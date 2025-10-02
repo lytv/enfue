@@ -30,7 +30,7 @@ cd enfue
 
 ## 🎬 Demo Video
 
-<video src="demo.mov" controls="controls" style="max-width: 720px;"></video>
+<video src="demo.mp4" controls="controls" style="max-width: 720px;"></video>
 
 ## 🔍 Search Features
 
