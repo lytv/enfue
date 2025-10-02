@@ -28,6 +28,10 @@ cd enfue
 - **Semantic Search**: http://localhost:8080/semantic-search.html
 - **Typesense API**: http://localhost:8108
 
+## 🎬 Demo Video
+
+https://github.com/lytv/enfue/assets/1677657/d5846189-118a-448a-b28a-7683e1b5580e
+
 ## 🔍 Search Features
 
 ### 1. **Natural Language Search**
