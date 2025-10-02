@@ -32,6 +32,19 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         super().do_GET()
 
 if __name__ == "__main__":
+    # Setup Typesense data on startup
+    try:
+        print("📊 Setting up Typesense data...")
+        import subprocess
+        result = subprocess.run(["python", "setup_typesense.py"], capture_output=True, text=True)
+        if result.returncode == 0:
+            print("✅ Data import completed")
+        else:
+            print("⚠️ Data import failed, continuing anyway...")
+            print(f"Error: {result.stderr}")
+    except Exception as e:
+        print(f"⚠️ Data import failed: {e}")
+    
     with socketserver.TCPServer(("", PORT), CustomHTTPRequestHandler) as httpd:
         print(f"✅ Server running at http://localhost:{PORT}")
         httpd.serve_forever()

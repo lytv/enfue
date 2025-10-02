@@ -3,13 +3,6 @@
 # Start script for Render deployment
 echo "🚀 Starting Enfue Search Demo on Render"
 
-# Install dependencies if needed
-if [ ! -f "requirements_installed" ]; then
-    echo "📦 Installing Python dependencies..."
-    pip install -r requirements.txt
-    touch requirements_installed
-fi
-
 # Setup Typesense data if not already done
 if [ ! -f "data_imported" ]; then
     echo "📊 Setting up Typesense data..."
