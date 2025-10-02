@@ -30,7 +30,7 @@ cd enfue
 
 ## 🎬 Demo Video
 
-https://github.com/lytv/enfue/assets/1677657/d5846189-118a-448a-b28a-7683e1b5580e
+<video src="demo.mov" controls="controls" style="max-width: 720px;"></video>
 
 ## 🔍 Search Features
 
