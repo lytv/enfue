@@ -17,6 +17,12 @@ cd enfue
 
 ## 🌐 Live Demo
 
+### 🚀 Production (Render)
+- **Main Demo**: [https://enfue-1.onrender.com/index.html](https://enfue-1.onrender.com/index.html)
+- **Advanced Search**: [https://enfue-1.onrender.com/advanced-search.html](https://enfue-1.onrender.com/advanced-search.html)
+- **Semantic Search**: [https://enfue-1.onrender.com/semantic-search.html](https://enfue-1.onrender.com/semantic-search.html)
+
+### 🏠 Local Development
 - **Main Demo**: http://localhost:8080/index.html
 - **Advanced Search**: http://localhost:8080/advanced-search.html
 - **Semantic Search**: http://localhost:8080/semantic-search.html
@@ -53,19 +59,27 @@ cd enfue
 - **Search Engine**: Typesense 29.0
 - **Backend**: Python 3.11 with HTTP server
 - **Frontend**: Vanilla JavaScript with modern CSS
-- **Deployment**: Docker containerization
+- **Deployment**: Docker containerization + Render cloud hosting
 - **Data**: CSV import with automatic parsing
+- **Cloud Hosting**: [Render](https://render.com) - Auto-deploy from GitHub
 
 ## 🔧 Management Commands
 
+### 🏠 Local Development
 ```bash
-./docker-deploy.sh                    # Deploy services
+./docker-deploy.sh                    # Deploy services locally
 docker stop enfue-typesense enfue-web # Stop services
 docker logs enfue-web                 # View logs
 docker ps                            # Check status
 curl http://localhost:8080/health    # Health check
 docker system prune -f               # Clean up
 ```
+
+### 🚀 Production (Render)
+- **Auto-deploy**: Pushes to `main` branch automatically deploy
+- **Manual deploy**: Use Render dashboard to trigger deployments
+- **Logs**: Available in Render dashboard
+- **Health check**: [https://enfue-1.onrender.com/health](https://enfue-1.onrender.com/health)
 
 ## 📁 Project Structure
 
@@ -74,7 +88,10 @@ enfue/
 ├── index.html                    # Main search interface
 ├── advanced-search.html         # Advanced search features
 ├── semantic-search.html         # Semantic search demo
-├── docker-deploy.sh             # Docker deployment script
+├── docker-deploy.sh             # Docker deployment script (local)
+├── Dockerfile                   # Docker configuration for Render
+├── requirements.txt             # Python dependencies
+├── render.yaml                  # Render service configuration
 ├── setup_typesense.py          # Data import script
 ├── serve_demo_docker.py        # HTTP server for Docker
 └── Run_Browser_Agent_With_A_Goal_In_Background_2025-10-02T03_02_40.209Z.csv
@@ -142,19 +159,21 @@ enfue/
    - Ensure Docker is running
    - Check port availability: `lsof -ti:8080`
 
+4. **Render deployment issues**
+   - Check Render dashboard logs
+   - Verify environment variables are set correctly
+   - Ensure GitHub repository is connected
+
 ### Debug Commands
 ```bash
-# Check service status
+# Local development
 docker ps
-
-# View logs
 docker logs enfue-web
-
-# Health check
 curl http://localhost:8080/health
-
-# Manual API test
 curl -H "x-typesense-api-key: Hu52dwsas2AdxdE" "http://localhost:8108/collections/enfue_companies/documents/search?q=*&query_by=company_name&per_page=1"
+
+# Production (Render)
+curl https://enfue-1.onrender.com/health
 ```
 
 ## 🤝 Contributing
