@@ -30,7 +30,19 @@ cd enfue
 
 ## 🎬 Demo Video
 
-<video src="demo.mp4" controls="controls" style="max-width: 720px;"></video>
+### 🎥 Live Demo Preview
+![Enfue Demo](demo.gif)
+
+### 📹 Download Full Video
+- **MP4 (Recommended)**: [demo.mp4](demo.mp4) (7.3MB)
+- **MOV (Original)**: [demo.mov](demo.mov) (26.4MB)
+- **GIF (Preview)**: [demo.gif](demo.gif) (521KB)
+
+**Demo Features:**
+- Natural language search queries
+- Advanced filtering and faceted search
+- Semantic search capabilities
+- Real-time search results
 
 ## 🔍 Search Features
 
