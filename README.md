@@ -9,18 +9,10 @@ Professional search platform built with Typesense for company discovery and job 
 
 ## 🚀 Quick Start
 
-### Option 1: Docker Deployment (Recommended)
 ```bash
 git clone https://github.com/lytv/enfue.git
 cd enfue
 ./docker-deploy.sh
-```
-
-### Option 2: Local Development
-```bash
-git clone https://github.com/lytv/enfue.git
-cd enfue
-./local-start.sh
 ```
 
 ## 🌐 Live Demo
@@ -66,7 +58,6 @@ cd enfue
 
 ## 🔧 Management Commands
 
-### Docker Management
 ```bash
 ./docker-deploy.sh                    # Deploy services
 docker stop enfue-typesense enfue-web # Stop services
@@ -74,13 +65,6 @@ docker logs enfue-web                 # View logs
 docker ps                            # Check status
 curl http://localhost:8080/health    # Health check
 docker system prune -f               # Clean up
-```
-
-### Local Development
-```bash
-./local-start.sh             # Local setup
-python3 setup_typesense.py   # Import data manually
-python3 serve_demo.py        # Start local server
 ```
 
 ## 📁 Project Structure
@@ -91,9 +75,7 @@ enfue/
 ├── advanced-search.html         # Advanced search features
 ├── semantic-search.html         # Semantic search demo
 ├── docker-deploy.sh             # Docker deployment script
-├── local-start.sh               # Local development script
 ├── setup_typesense.py          # Data import script
-├── semantic_natural_demo.py    # Demo script
 ├── serve_demo_docker.py        # HTTP server for Docker
 └── Run_Browser_Agent_With_A_Goal_In_Background_2025-10-02T03_02_40.209Z.csv
 ```
@@ -150,7 +132,7 @@ enfue/
    ```
    docker: error getting credentials - err: exec: "docker-credential-desktop": executable file not found
    ```
-   **Solution**: Use `./docker-deploy.sh` or `./local-start.sh`
+   **Solution**: Use `./docker-deploy.sh`
 
 2. **No search results**
    - Check Typesense server: `curl http://localhost:8108/health`
