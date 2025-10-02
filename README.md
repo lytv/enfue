@@ -1,37 +1,29 @@
 # 🏢 Enfue Companies Search Platform
 
+[![Docker](https://img.shields.io/badge/Docker-Ready-blue?logo=docker)](https://www.docker.com/)
+[![Typesense](https://img.shields.io/badge/Typesense-29.0-green?logo=typesense)](https://typesense.org/)
+[![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)](https://python.org/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Professional search platform built with Typesense for company discovery and job opportunities across Vietnam.
 
 ## 🚀 Quick Start
 
 ### Option 1: Docker Deployment (Recommended)
 ```bash
-cd enfue/
+git clone https://github.com/lytv/enfue.git
+cd enfue
 ./docker-deploy.sh
 ```
 
-### Option 2: Local Development (No Docker credentials needed)
+### Option 2: Local Development
 ```bash
-cd enfue/
+git clone https://github.com/lytv/enfue.git
+cd enfue
 ./local-start.sh
 ```
 
-### Option 3: Manual Setup
-```bash
-# Start Typesense
-docker run -d --name enfue-typesense -p 8108:8108 -v/tmp/data:/data typesense/typesense:29.0 --data-dir /data --api-key=Hu52dwsas2AdxdE
-
-# Install Python dependencies
-pip install typesense
-
-# Setup data
-python setup_typesense.py
-
-# Start web server
-python serve_demo.py
-```
-
-## 🌐 Access URLs
+## 🌐 Live Demo
 
 - **Main Demo**: http://localhost:8080/index.html
 - **Advanced Search**: http://localhost:8080/advanced-search.html
@@ -40,29 +32,22 @@ python serve_demo.py
 
 ## 🔍 Search Features
 
-### 1. **Main Search** (`index.html`)
-- **Natural Language Search**: Ask questions in plain English
-- **Typo Tolerance**: Handles spelling mistakes automatically
-- **Real-time Filtering**: Location and job position filters
-- **Live Statistics**: Dynamic company and position counts
+### 1. **Natural Language Search**
+- Ask questions in plain English
+- "hiring companies" → Companies with open positions
+- "tech companies in Da Nang" → Tech companies in Da Nang
+- "companies with more than 5 positions" → Companies hiring heavily
 
-**Example Queries:**
-- `"hiring companies"` → Companies with open positions
-- `"tech companies in Da Nang"` → Tech companies in Da Nang
-- `"companies with more than 5 positions"` → Companies hiring heavily
+### 2. **Advanced Search**
+- Faceted search with interactive filters
+- Auto-complete suggestions
+- Advanced filtering with numeric operators
+- Pagination and highlighting
 
-### 2. **Advanced Search** (`advanced-search.html`)
-- **Faceted Search**: Interactive filtering by location, job positions
-- **Auto-complete**: Smart suggestions as you type
-- **Advanced Filters**: Numeric operators (>, <, =, >=, <=)
-- **Pagination**: Navigate through large result sets
-- **Highlighting**: Search terms highlighted in results
-
-### 3. **Semantic Search** (`semantic-search.html`)
-- **Multi-field Search**: Search across company names and locations
-- **Context Understanding**: Finds relevant results even without exact keywords
-- **Intelligent Ranking**: Results sorted by relevance and context
-- **Search Analytics**: Performance metrics and search insights
+### 3. **Semantic Search**
+- Multi-field search across company names and locations
+- Context understanding for relevant results
+- Intelligent ranking and search analytics
 
 ## 📊 Data Overview
 
@@ -76,38 +61,27 @@ python serve_demo.py
 - **Search Engine**: Typesense 29.0
 - **Backend**: Python 3.11 with HTTP server
 - **Frontend**: Vanilla JavaScript with modern CSS
-- **Deployment**: Docker & Docker Compose
+- **Deployment**: Docker containerization
 - **Data**: CSV import with automatic parsing
 
 ## 🔧 Management Commands
 
 ### Docker Management
 ```bash
-./docker-deploy.sh          # Deploy Docker services
-docker stop enfue-typesense enfue-web  # Stop services
-docker logs enfue-web       # View logs
-docker ps                   # Check status
-curl http://localhost:8080/health  # Health check
-docker system prune -f      # Clean up
+./docker-deploy.sh                    # Deploy services
+docker stop enfue-typesense enfue-web # Stop services
+docker logs enfue-web                 # View logs
+docker ps                            # Check status
+curl http://localhost:8080/health    # Health check
+docker system prune -f               # Clean up
 ```
 
 ### Local Development
 ```bash
-./local-start.sh             # Local setup (no Docker credentials)
+./local-start.sh             # Local setup
 python3 setup_typesense.py   # Import data manually
 python3 serve_demo.py        # Start local server
 ```
-
-## 🐳 Docker Deployment
-
-### Simple Docker Setup
-```bash
-./docker-deploy.sh
-```
-
-### Docker Services
-- **typesense** (Port 8108): Search engine with persistent data
-- **enfue-web** (Port 8080): Web interface with health checks
 
 ## 📁 Project Structure
 
@@ -120,6 +94,7 @@ enfue/
 ├── local-start.sh               # Local development script
 ├── setup_typesense.py          # Data import script
 ├── semantic_natural_demo.py    # Demo script
+├── serve_demo_docker.py        # HTTP server for Docker
 └── Run_Browser_Agent_With_A_Goal_In_Background_2025-10-02T03_02_40.209Z.csv
 ```
 
@@ -137,23 +112,22 @@ enfue/
 3. **Recruitment**: Filter candidates by location preferences
 4. **Market Analysis**: Understand job market distribution
 
-## 🔍 Advanced Search Examples
+## 🔍 Search Examples
 
 ### Natural Language Queries
-- `"hiring companies"` → Companies with open positions
-- `"tech companies in Da Nang"` → Tech companies in Da Nang
-- `"companies with more than 5 positions"` → Companies hiring heavily
-- `"biggest companies"` → Companies sorted by position count
+```bash
+"hiring companies"                    # → Companies with open positions
+"tech companies in Da Nang"          # → Tech companies in Da Nang
+"companies with more than 5 positions" # → Companies hiring heavily
+"biggest companies"                  # → Companies sorted by position count
+```
 
 ### Advanced Queries
-- `"tech AND da nang AND open positions"` → Complex filtering
-- `"companies:>5 positions"` → Numeric filtering
-- `"sort by positions descending"` → Custom sorting
-
-### Semantic Search
-- `"companies that develop software"` → Software companies
-- `"technology solutions"` → Tech-related companies
-- `"digital companies"` → Digital/tech companies
+```bash
+"tech AND da nang AND open positions" # → Complex filtering
+"companies:>5 positions"             # → Numeric filtering
+"sort by positions descending"       # → Custom sorting
+```
 
 ## 🏗️ Architecture
 
@@ -186,14 +160,6 @@ enfue/
    - Ensure Docker is running
    - Check port availability: `lsof -ti:8080`
 
-4. **Performance issues**
-   - Monitor resource usage: `docker stats`
-   - Check logs: `docker logs enfue-web`
-
-5. **Docker issues**
-   - Clean up: `docker system prune -f`
-   - Restart: `docker restart enfue-web`
-
 ### Debug Commands
 ```bash
 # Check service status
@@ -209,6 +175,14 @@ curl http://localhost:8080/health
 curl -H "x-typesense-api-key: Hu52dwsas2AdxdE" "http://localhost:8108/collections/enfue_companies/documents/search?q=*&query_by=company_name&per_page=1"
 ```
 
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
 ## 📞 Support
 
 For issues and questions:
@@ -217,21 +191,21 @@ For issues and questions:
 3. Test API endpoints directly
 4. Refer to [Typesense Documentation](https://typesense.org/docs/)
 
-## 🔄 Development
+## 📄 License
 
-### Adding New Features
-1. Modify HTML files for UI changes
-2. Update Python scripts for backend logic
-3. Test with `./local-start.sh`
-4. Deploy with `./docker-deploy.sh`
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### Data Updates
-1. Replace CSV file
-2. Run `python3 setup_typesense.py`
-3. Verify with API test
+## 🙏 Acknowledgments
+
+- [Typesense](https://typesense.org/) for the amazing search engine
+- Vietnam tech community for inspiration
+- All contributors and users
 
 ---
 
 **Built with ❤️ for the Vietnam tech community**
 
 **Happy Searching! 🔍✨**
+
+[![GitHub stars](https://img.shields.io/github/stars/lytv/enfue?style=social)](https://github.com/lytv/enfue)
+[![GitHub forks](https://img.shields.io/github/forks/lytv/enfue?style=social)](https://github.com/lytv/enfue)
