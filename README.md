@@ -31,12 +31,13 @@ cd enfue
 ## 🎬 Demo Video
 
 ### 🎥 Live Demo Preview
-![Enfue Demo](demo.gif)
+![Enfue Demo](demo_hq.gif)
 
 ### 📹 Download Full Video
 - **MP4 (Recommended)**: [demo.mp4](demo.mp4) (7.3MB)
 - **MOV (Original)**: [demo.mov](demo.mov) (26.4MB)
-- **GIF (Preview)**: [demo.gif](demo.gif) (521KB)
+- **GIF (High Quality)**: [demo_hq.gif](demo_hq.gif) (4.3MB)
+- **GIF (Small)**: [demo.gif](demo.gif) (521KB)
 
 **Demo Features:**
 - Natural language search queries
