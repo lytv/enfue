@@ -8,6 +8,7 @@ import typesense
 import csv
 import json
 import os
+import time
 from typing import List, Dict, Any
 
 # Typesense configuration
@@ -210,9 +211,22 @@ def main():
         print("🔌 Connecting to Typesense...")
         client = create_typesense_client()
         
-        # Test connection
-        client.collections.retrieve()
-        print("✅ Connected to Typesense successfully")
+        # Test connection with retry logic
+        max_retries = 5
+        for attempt in range(max_retries):
+            try:
+                client.collections.retrieve()
+                print("✅ Connected to Typesense successfully")
+                break
+            except Exception as e:
+                if attempt < max_retries - 1:
+                    print(f"⚠️ Connection attempt {attempt + 1} failed: {e}")
+                    print("⏳ Retrying in 5 seconds...")
+                    time.sleep(5)
+                else:
+                    print(f"❌ Failed to connect to Typesense after {max_retries} attempts: {e}")
+                    print("⚠️ Continuing without Typesense setup...")
+                    return
         
         # Setup collection
         if not setup_collection(client):

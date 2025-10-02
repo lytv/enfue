@@ -1,0 +1,5 @@
+FROM typesense/typesense:29.0
+
+EXPOSE 8108
+
+CMD ["--data-dir", "/data", "--api-key=Hu52dwsas2AdxdE", "--listen-port", "8108", "--enable-cors"]
