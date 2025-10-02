@@ -3,8 +3,9 @@ import http.server
 import socketserver
 import json
 import time
+import os
 
-PORT = 8080
+PORT = int(os.environ.get('PORT', 8080))
 
 class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):

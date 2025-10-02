@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: enfue-search-demo
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    region: oregon
+    buildCommand: ""
+    startCommand: python serve_demo_docker.py
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: TYPESENSE_HOST
+        value: typesense
+      - key: TYPESENSE_API_KEY
+        value: Hu52dwsas2AdxdE
+    healthCheckPath: /health
+    autoDeploy: true
+
+  - type: web
+    name: enfue-typesense
+    env: docker
+    dockerContext: .
+    dockerfilePath: |
+      FROM typesense/typesense:29.0
+      EXPOSE 8108
+      CMD ["--data-dir", "/data", "--api-key=Hu52dwsas2AdxdE", "--listen-port", "8108", "--enable-cors"]
+    plan: starter
+    region: oregon
+    startCommand: ""
+    envVars:
+      - key: TYPESENSE_API_KEY
+        value: Hu52dwsas2AdxdE
+    healthCheckPath: /health
+    autoDeploy: true

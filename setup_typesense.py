@@ -12,13 +12,13 @@ from typing import List, Dict, Any
 
 # Typesense configuration
 TYPESENSE_CONFIG = {
-    'api_key': 'Hu52dwsas2AdxdE',
+    'api_key': os.environ.get('TYPESENSE_API_KEY', 'Hu52dwsas2AdxdE'),
     'nodes': [{
-        'host': os.environ.get('TYPESENSE_HOST', 'typesense').replace('http://', '').replace('https://', ''),
-        'port': '8108',
+        'host': os.environ.get('TYPESENSE_HOST', 'localhost').replace('http://', '').replace('https://', ''),
+        'port': os.environ.get('TYPESENSE_PORT', '8108'),
         'protocol': 'http'
     }],
-    'connection_timeout_seconds': 2
+    'connection_timeout_seconds': 10
 }
 
 COLLECTION_NAME = 'enfue_companies'
